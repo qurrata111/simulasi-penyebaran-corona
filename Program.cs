@@ -6,8 +6,7 @@ namespace simulasi_penyebaran_covid_19
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static public List<Daerah> getInfoDaerah() {
             int counter = 0, numOfDaerah = 0;
             string line, line3, daerah_terinfeksi = "";
             List<Daerah> list_daerah = new List<Daerah>();
@@ -16,8 +15,7 @@ namespace simulasi_penyebaran_covid_19
             System.IO.StreamReader file =   
             new System.IO.StreamReader(@"/Users/r4r4s274/Documents/RARAS/TUBES/simulasi-penyebaran-corona/populasi-daerah.txt");  
             while((line = file.ReadLine()) != null)  
-            {  
-                System.Console.WriteLine(line);  
+            { 
                 counter++; 
                 if (counter == 1) {
                     string[] line1 = line.Split(' ');
@@ -81,14 +79,20 @@ namespace simulasi_penyebaran_covid_19
                 if (daerah_terinfeksi == daerah.nama) {
                     daerah.setIsInfected(true);
                 }
+            }
+            return list_daerah;
+        }
+        static void Main(string[] args)
+        {
+            List<Daerah> list_daerah = new List<Daerah>();
+            list_daerah = getInfoDaerah();
+            foreach (Daerah daerah in list_daerah) {
                 daerah.printInfo();
             }
             
         }
     }
-
-
-
+    
     public class Daerah {
         public string nama;
         public int populasi, populasi_terinfeksi, first_day_infected, total_hari;
