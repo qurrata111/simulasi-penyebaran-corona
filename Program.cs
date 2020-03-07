@@ -49,22 +49,22 @@ namespace simulasi_penyebaran_covid_19
                 if (counter > 1) {
                     string[] line4 = line3.Split(' ');
                     int i = 0;
-                        int a = 0;
-                        bool found = false;
-                        while (a < list_daerah.Count && !found){
-                            if (list_daerah[a].nama_daerah == line4[i]){
-                                found = true;
-                            }
-                            else{
-                                a +=1;
-                            }
+                    int a = 0;
+                    bool found = false;
+                    while (a < list_daerah.Count && !found){
+                        if (list_daerah[a].nama == line4[i]){
+                            found = true;
                         }
-                        Daerah daerah_temp = list_daerah[a];
+                        else{
+                            a +=1;
+                        }
+                    }
+                    Daerah daerah_temp = Daerah(list_daerah[a]);
                         // Daerah child = new Daerah();
                         // if (i==0) {
                             // child.setNamaDaerah(line4[i+1]);
-                            // System.Console.WriteLine("{0}", line4[i+1]);
-                            daerah_temp.addChildren(line4[i+1], float.Parse(line4[i+2]));
+                            System.Console.WriteLine("{0}", list_daerah[a].nama);
+                    daerah_temp.addChildren(line4[i+1], float.Parse(line4[i+2]));
                         // }
                     // }
                 }
@@ -98,7 +98,7 @@ namespace simulasi_penyebaran_covid_19
         public int populasi, populasi_terinfeksi, first_day_infected, total_hari;
         public Boolean is_infected;
         public Dictionary<string, float> daerah_tetangga;
-        public int jumlah_tetangga = 0;
+        public int jumlah_tetangga;
 
         public Daerah() {
             nama = "";
@@ -107,6 +107,8 @@ namespace simulasi_penyebaran_covid_19
             first_day_infected = 0;
             total_hari = 0;
             is_infected = false;
+            Dictionary<string, float> daerah_tetangga = new Dictionary<string, float>();
+            jumlah_tetangga = 0;
         }
         public Daerah(string nd, int p, int pt, int fd, int th, Boolean ii) {
             nama = nd;
@@ -115,6 +117,8 @@ namespace simulasi_penyebaran_covid_19
             first_day_infected = fd;
             total_hari = th;
             is_infected = ii;
+            Dictionary<string, float> daerah_tetangga = new Dictionary<string, float>();
+            jumlah_tetangga = 0;
         }
 
         public void setNamaDaerah(string n) {
@@ -144,16 +148,16 @@ namespace simulasi_penyebaran_covid_19
             System.Console.WriteLine("Hari pertama terinfeksi   : {0}", first_day_infected);
             System.Console.WriteLine("Total hari terinfeksi     : {0}", total_hari);
             System.Console.WriteLine("Apakah terinfeksi         : {0}", is_infected);
-            foreach ( KeyValuePair<string, float> kvp in daerah_tetangga){
-                System.Console.WriteLine("Nama tetangga                 : {0}", kvp.Key);
-                System.Console.WriteLine("Peluang melakukan perjalanan  : {0}", kvp.Value);
-            }
-            System.Console.WriteLine("Jumlah tetangga               : {0}", jumlah_tetangga);
+            // foreach ( KeyValuePair<string, float> kvp in daerah_tetangga){
+            //     System.Console.WriteLine("Nama tetangga                 : {0}", kvp.Key);
+            //     System.Console.WriteLine("Peluang melakukan perjalanan  : {0}", kvp.Value);
+            // }
+            // System.Console.WriteLine("Jumlah tetangga               : {0}", jumlah_tetangga);
         }
 
-        public void addChildren(string child, float n){
-            daerah_tetangga.Add(child, n);
-            jumlah_tetangga +=1;
-        }
+        // public void addChildren(string child, float n){
+        //     daerah_tetangga.Add(child, n);
+        //     jumlah_tetangga +=1;
+        // }
     }
 }
