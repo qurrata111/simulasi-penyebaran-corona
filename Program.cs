@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace simulasi_penyebaran_covid_19
 {
@@ -33,7 +34,7 @@ namespace simulasi_penyebaran_covid_19
                         Daerah daerah_temp = new Daerah();
                         if (i==0) {
                             daerah_temp.setNamaDaerah(line2[i]);
-                            daerah_temp.setPopulasiDaerah(Int32.Parse(line2[i+1]));
+                            daerah_temp.setPopulasi(Int32.Parse(line2[i+1]));
                             list_daerah.Add(daerah_temp);
                         }
                     }
@@ -44,34 +45,66 @@ namespace simulasi_penyebaran_covid_19
             System.Console.WriteLine("There were {0} lines.", counter);
             System.Console.WriteLine("Ada {0} daerah", numOfDaerah);
             System.Console.WriteLine("Daerah yang pertama kali diinfeksi {0}", daerah_terinfeksi);
-            foreach (Daerah daerah in list_daerah)
-            {
+            foreach (Daerah daerah in list_daerah) {
+                if (daerah_terinfeksi == daerah.nama) {
+                    daerah.setIsInfected(true);
+                }
                 daerah.printInfo();
             }
+            
         }
     }
 
+
+
     public class Daerah {
-        public string nama_daerah;
-        public int populasi_daerah;
+        public string nama;
+        public int populasi, populasi_terinfeksi, first_day_infected, total_hari;
+        public Boolean is_infected;
         public Daerah() {
-            nama_daerah = ""; populasi_daerah = 0;
+            nama = "";
+            populasi = 0;
+            populasi_terinfeksi = 0;
+            first_day_infected = 0;
+            total_hari = 0;
+            is_infected = false;
         }
-        public Daerah(string nd, int pd) {
-            nama_daerah = nd; populasi_daerah = pd;
+        public Daerah(string nd, int p, int pt, int fd, int th, Boolean ii) {
+            nama = nd;
+            populasi = p;
+            populasi_terinfeksi = pt;
+            first_day_infected = fd;
+            total_hari = th;
+            is_infected = ii;
         }
 
-        public void setNamaDaerah(string nama) {
-            nama_daerah = nama;
+        public void setNamaDaerah(string n) {
+            nama = n;
         }
 
-        public void setPopulasiDaerah(int populasi) {
-            populasi_daerah = populasi;
+        public void setPopulasi(int p) {
+            populasi = p;
+        }
+        public void setPopulasiTerinfeksi(int pt) {
+            populasi_terinfeksi = pt;
+        }
+        public void setFirstDayInfected (int fi) {
+            first_day_infected = fi;
+        }
+        public void setTotalHari (int th) {
+            total_hari = th;
+        }
+        public void setIsInfected (Boolean ii) {
+            is_infected = ii;
         }
 
         public void printInfo() {
-            System.Console.WriteLine("Nama daerah    : {0}", nama_daerah);
-            System.Console.WriteLine("Populasi daerah: {0}", populasi_daerah);
+            System.Console.WriteLine("Nama daerah               : {0}", nama);
+            System.Console.WriteLine("Populasi                  : {0}", populasi);
+            System.Console.WriteLine("Populasi terinfeksi       : {0}", populasi_terinfeksi);
+            System.Console.WriteLine("Hari pertama terinfeksi   : {0}", first_day_infected);
+            System.Console.WriteLine("Total hari terinfeksi     : {0}", total_hari);
+            System.Console.WriteLine("Apakah terinfeksi         : {0}", is_infected);
         }
     }
 }
