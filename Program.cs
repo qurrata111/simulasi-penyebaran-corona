@@ -6,8 +6,7 @@ namespace simulasi_penyebaran_covid_19
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static public List<Daerah> getInfoDaerah() {
             int counter = 0, numOfDaerah = 0;
             string line, daerah_terinfeksi = "";
             List<Daerah> list_daerah = new List<Daerah>();
@@ -16,8 +15,7 @@ namespace simulasi_penyebaran_covid_19
             System.IO.StreamReader file =   
             new System.IO.StreamReader(@"/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-covid-19/populasi-daerah.txt");  
             while((line = file.ReadLine()) != null)  
-            {  
-                System.Console.WriteLine(line);  
+            { 
                 counter++; 
                 if (counter == 1) {
                     string[] line1 = line.Split(' ');
@@ -41,22 +39,25 @@ namespace simulasi_penyebaran_covid_19
                 }
             }  
             
-            file.Close();  
-            System.Console.WriteLine("There were {0} lines.", counter);
-            System.Console.WriteLine("Ada {0} daerah", numOfDaerah);
-            System.Console.WriteLine("Daerah yang pertama kali diinfeksi {0}", daerah_terinfeksi);
+            file.Close();
             foreach (Daerah daerah in list_daerah) {
                 if (daerah_terinfeksi == daerah.nama) {
                     daerah.setIsInfected(true);
                 }
+            }
+            return list_daerah;
+        }
+        static void Main(string[] args)
+        {
+            List<Daerah> list_daerah = new List<Daerah>();
+            list_daerah = getInfoDaerah();
+            foreach (Daerah daerah in list_daerah) {
                 daerah.printInfo();
             }
             
         }
     }
-
-
-
+    
     public class Daerah {
         public string nama;
         public int populasi, populasi_terinfeksi, first_day_infected, total_hari;
@@ -104,7 +105,7 @@ namespace simulasi_penyebaran_covid_19
             System.Console.WriteLine("Populasi terinfeksi       : {0}", populasi_terinfeksi);
             System.Console.WriteLine("Hari pertama terinfeksi   : {0}", first_day_infected);
             System.Console.WriteLine("Total hari terinfeksi     : {0}", total_hari);
-            System.Console.WriteLine("Apakah terinfeksi         : {0}", is_infected);
+            System.Console.WriteLine("Status infeksi            : {0}", is_infected);
         }
     }
 }
