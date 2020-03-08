@@ -12,7 +12,7 @@ namespace simulasi_penyebaran_covid_19
             List<Daerah> list_daerah = new List<Daerah>();
             
             // Read the file and display it line by line.  
-            System.IO.StreamReader file =   
+            System.IO.StreamReader file =
             new System.IO.StreamReader(@"/Users/r4r4s274/Documents/RARAS/TUBES/simulasi-penyebaran-corona/populasi-daerah.txt");  
             while((line = file.ReadLine()) != null)  
             { 
@@ -41,30 +41,30 @@ namespace simulasi_penyebaran_covid_19
 
             counter = 0;
             System.IO.StreamReader file1 =   
-            new System.IO.StreamReader(@"/Users/r4r4s274/Documents/RARAS/TUBES/simulasi-penyebaran-coronadaerah-dan-keterhubungan.txt");  
+            new System.IO.StreamReader(@"/Users/r4r4s274/Documents/RARAS/TUBES/simulasi-penyebaran-corona/daerah-dan-keterhubungan.txt");  
             while((line3 = file1.ReadLine()) != null)  
             {
-                System.Console.WriteLine(line3);  
+                // System.Console.WriteLine(line3);  
                 counter++; 
                 if (counter > 1) {
                     string[] line4 = line3.Split(' ');
                     int i = 0;
-                    int a = 0;
-                    bool found = false;
-                    while (a < list_daerah.Count && !found){
-                        if (list_daerah[a].nama == line4[i]){
-                            found = true;
+                        int a = 0;
+                        bool found = false;
+                        while (a < list_daerah.Count && !found){
+                            if (list_daerah[a].nama == line4[i]){
+                                found = true;
+                            }
+                            else{
+                                a +=1;
+                            }
                         }
-                        else{
-                            a +=1;
-                        }
-                    }
-                    Daerah daerah_temp = Daerah(list_daerah[a]);
+                        Daerah daerah_temp = list_daerah[a];
                         // Daerah child = new Daerah();
                         // if (i==0) {
                             // child.setNamaDaerah(line4[i+1]);
-                            System.Console.WriteLine("{0}", list_daerah[a].nama);
-                    daerah_temp.addChildren(line4[i+1], float.Parse(line4[i+2]));
+                            // System.Console.WriteLine("{0}", line4[i+1]);
+                            daerah_temp.addChildren(line4[i+1], float.Parse(line4[i+2]));
                         // }
                     // }
                 }
@@ -72,7 +72,7 @@ namespace simulasi_penyebaran_covid_19
 
             file1.Close();
             file.Close();  
-            System.Console.WriteLine("There were {0} lines.", counter);
+            // System.Console.WriteLine("There were {0} lines.", counter);
             System.Console.WriteLine("Ada {0} daerah", numOfDaerah);
             System.Console.WriteLine("Daerah yang pertama kali diinfeksi {0}", daerah_terinfeksi);
             foreach (Daerah daerah in list_daerah) {
@@ -87,6 +87,7 @@ namespace simulasi_penyebaran_covid_19
             List<Daerah> list_daerah = new List<Daerah>();
             list_daerah = getInfoDaerah();
             foreach (Daerah daerah in list_daerah) {
+                System.Console.WriteLine();
                 daerah.printInfo();
             }
             
@@ -98,7 +99,7 @@ namespace simulasi_penyebaran_covid_19
         public int populasi, populasi_terinfeksi, first_day_infected, total_hari;
         public Boolean is_infected;
         public Dictionary<string, float> daerah_tetangga;
-        public int jumlah_tetangga;
+        public int jumlah_tetangga = 0;
 
         public Daerah() {
             nama = "";
@@ -107,8 +108,7 @@ namespace simulasi_penyebaran_covid_19
             first_day_infected = 0;
             total_hari = 0;
             is_infected = false;
-            Dictionary<string, float> daerah_tetangga = new Dictionary<string, float>();
-            jumlah_tetangga = 0;
+            daerah_tetangga = new Dictionary<string, float>();
         }
         public Daerah(string nd, int p, int pt, int fd, int th, Boolean ii) {
             nama = nd;
@@ -117,8 +117,6 @@ namespace simulasi_penyebaran_covid_19
             first_day_infected = fd;
             total_hari = th;
             is_infected = ii;
-            Dictionary<string, float> daerah_tetangga = new Dictionary<string, float>();
-            jumlah_tetangga = 0;
         }
 
         public void setNamaDaerah(string n) {
@@ -142,22 +140,22 @@ namespace simulasi_penyebaran_covid_19
         }
 
         public void printInfo() {
-            System.Console.WriteLine("Nama daerah               : {0}", nama);
-            System.Console.WriteLine("Populasi                  : {0}", populasi);
-            System.Console.WriteLine("Populasi terinfeksi       : {0}", populasi_terinfeksi);
-            System.Console.WriteLine("Hari pertama terinfeksi   : {0}", first_day_infected);
-            System.Console.WriteLine("Total hari terinfeksi     : {0}", total_hari);
-            System.Console.WriteLine("Apakah terinfeksi         : {0}", is_infected);
-            // foreach ( KeyValuePair<string, float> kvp in daerah_tetangga){
-            //     System.Console.WriteLine("Nama tetangga                 : {0}", kvp.Key);
-            //     System.Console.WriteLine("Peluang melakukan perjalanan  : {0}", kvp.Value);
-            // }
-            // System.Console.WriteLine("Jumlah tetangga               : {0}", jumlah_tetangga);
+            System.Console.WriteLine("Nama daerah                   : {0}", nama);
+            System.Console.WriteLine("Populasi                      : {0}", populasi);
+            System.Console.WriteLine("Populasi terinfeksi           : {0}", populasi_terinfeksi);
+            System.Console.WriteLine("Hari pertama terinfeksi       : {0}", first_day_infected);
+            System.Console.WriteLine("Total hari terinfeksi         : {0}", total_hari);
+            System.Console.WriteLine("Apakah terinfeksi             : {0}", is_infected);
+            foreach ( KeyValuePair<string, float> kvp in daerah_tetangga){
+                System.Console.WriteLine("Nama tetangga                 : {0}", kvp.Key);
+                System.Console.WriteLine("Peluang melakukan perjalanan  : {0}", kvp.Value);
+            }
+            System.Console.WriteLine("Jumlah tetangga               : {0}", jumlah_tetangga);
         }
 
-        // public void addChildren(string child, float n){
-        //     daerah_tetangga.Add(child, n);
-        //     jumlah_tetangga +=1;
-        // }
+        public void addChildren(string child, float n){
+            daerah_tetangga.Add(child, n);
+            jumlah_tetangga +=1;
+        }
     }
 }
