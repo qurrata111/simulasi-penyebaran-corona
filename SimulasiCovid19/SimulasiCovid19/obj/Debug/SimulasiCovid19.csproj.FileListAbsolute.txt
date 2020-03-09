@@ -1,0 +1,16 @@
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\SimulasiCovid19.exe.config
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\SimulasiCovid19.exe
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\SimulasiCovid19.pdb
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.dll
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.xml
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.Form1.resources
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.Properties.Resources.resources
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.csproj.GenerateResource.cache
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.csproj.CopyComplete
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.exe
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.pdb
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.csprojAssemblyReference.cache
