@@ -14,3 +14,5 @@ C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCov
 C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.exe
 C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.pdb
 C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.csprojAssemblyReference.cache
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.Form2.resources
+C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\obj\Debug\SimulasiCovid19.Form3.resources

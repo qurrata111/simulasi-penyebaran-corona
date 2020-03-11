@@ -81,6 +81,8 @@ namespace SimulasiCovid19
             System.Console.WriteLine("Jumlah tetangga               : {0}", jumlah_tetangga);
         }
 
+        
+
         public void addChildren(string child, float n)
         {
             daerah_tetangga.Add(child, n);
@@ -90,7 +92,7 @@ namespace SimulasiCovid19
         public void count_populasiTerinfeksi()
         {
             double total = (double)total_hari / (double)4;
-            populasi_terinfeksi = populasi / (int)(1 + (populasi - 1) * Math.Pow(Math.E, -(total)));
+            populasi_terinfeksi = populasi / (int)(1 + ((populasi - 1) * Math.Pow(Math.E, -(total))));
         }
 
         public Boolean berhasil_terinfeksi(double peluang)
@@ -109,6 +111,63 @@ namespace SimulasiCovid19
         {
             init_daerah = getInfoDaerah();
             infected_daerah = findInfectedDaerah(hari);
+           
+        }
+
+        public void writeBFSIntoCSV()
+        {
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\file-external\bfs.csv"))
+            {
+                file.WriteLine("Nama Daerah,Berhasil Terinfeksi,Daerah Asal Infeksi,Populasi,Populasi Terinfeksi,Hari Pertama Terinfeksi");
+                foreach (Daerah d in infected_daerah)
+                {
+                    string line = "";
+                    for (int i = 1; i < 7; i++) {
+                        if (i==1)
+                        {
+                            line += d.nama + ",";
+                        } else if (i==2)
+                        {
+                            if (d.is_infected)
+                            {
+                                line += "Berhasil,";
+                            }
+                            else
+                            {
+                                line += "Tidak Berhasil,";
+                            }
+                        } else if (i==3)
+                        {
+                            if (d.is_infected)
+                            {
+                                line += d.infected_from + ",";
+                            }
+                            else
+                            {
+                                line += "Tidak Berhasil,";
+                            }
+                        } else if (i == 4)
+                        {
+                            line += d.populasi + ",";
+                        } else if (i== 5)
+                        {
+                            line += d.populasi_terinfeksi + ",";
+                        } else if (i==6)
+                        {
+                            if (d.is_infected)
+                            {
+                                line += d.first_day_infected;
+                            }
+                            else
+                            {
+                                line += "-";
+                            }
+                        }
+                    }
+                    file.WriteLine(line);   
+                }
+            }
         }
 
         static public List<Daerah> getInfoDaerah()
@@ -119,7 +178,7 @@ namespace SimulasiCovid19
 
             // Read the file and display it line by line.  
             System.IO.StreamReader file =
-            new System.IO.StreamReader(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\populasi-daerah.txt");
+            new System.IO.StreamReader(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\file-external\populasi-daerah.txt");
             while ((line = file.ReadLine()) != null)
             {
                 counter++;
@@ -157,7 +216,7 @@ namespace SimulasiCovid19
 
             counter = 0;
             System.IO.StreamReader file1 =
-            new System.IO.StreamReader(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\daerah-dan-keterhubungan.txt");
+            new System.IO.StreamReader(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\file-external\daerah-dan-keterhubungan.txt");
             while ((line3 = file1.ReadLine()) != null)
             {
                 counter++;
@@ -213,69 +272,95 @@ namespace SimulasiCovid19
                 daerah.printInfo();
             }
 
-            // INISIASI QUEUE PERTAMA
-            Daerah first_daerah = new Daerah();
-            string first;
-            foreach (Daerah daerah in list_daerah)
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(@"C:\Users\ASUS\source\repos\SimulasiCovid19\SimulasiCovid19\bfs-queue.csv"))
             {
-                if (daerah.is_infected)
+                file.WriteLine("Nama Daerah,Berhasil Terinfeksi,Daerah Asal Infeksi,Populasi Terinfeksi,Hari Pertama Terinfeksi");
+                string line = "";
+
+                // INISIASI QUEUE PERTAMA
+                Daerah first_daerah = new Daerah();
+                string first;
+                foreach (Daerah daerah in list_daerah)
                 {
-                    first_daerah = daerah;
-                }
-            }
-
-            first = first_daerah.nama;
-            int i = find_index(list_daerah, first);
-            list_daerah[i].setFirstDayInfected(0);
-            list_daerah[i].setTotalHari(jumlahHari - list_daerah[i].first_day_infected);
-
-            foreach (KeyValuePair<string, float> kvp in list_daerah[i].daerah_tetangga)
-            {
-                sumber.Enqueue(list_daerah[i].nama);
-                tujuan.Enqueue(kvp.Key);
-                peluang_travel.Enqueue(kvp.Value);
-            }
-
-            // LOOPING
-            while (tujuan.Count() > 0)
-            {
-                string c_sumber = sumber.Dequeue();
-                string c_tujuan = tujuan.Dequeue();
-                float c_peluang_travel = peluang_travel.Dequeue();
-
-                int s = find_index(list_daerah, c_sumber);
-                int t = find_index(list_daerah, c_tujuan);
-
-                // MENGECEK APAKAH BERHASIL TERINFEKSI/TIDAK
-                if (list_daerah[s].berhasil_terinfeksi(c_peluang_travel) == true)
-                {
-                    list_daerah[t].setIsInfected(true);
-                    list_daerah[t].setInfectedFrom(list_daerah[s].nama);
-                    double p = list_daerah[s].populasi;
-                    double tr = c_peluang_travel;
-                    double day = -4 * (1 / Math.Log(Math.E, (p * tr - 1) / (p - 1))) + 1;
-
-                    int first_day_new = (int)day + list_daerah[s].first_day_infected;
-                    System.Console.WriteLine("first_day_new {0}", first_day_new);
-                    System.Console.WriteLine("first_day_old {0}", list_daerah[t].first_day_infected);
-
-                    // ANAK DARI NODE AKAN DIMASUKKAN KE QUEUE APABILA FIRST DAY INFECTED LEBIH KECIL DARI YANG LAMA
-                    if (first_day_new < list_daerah[t].first_day_infected)
+                    if (daerah.is_infected)
                     {
-                        list_daerah[t].setFirstDayInfected(first_day_new);
-                        list_daerah[t].setTotalHari(jumlahHari - list_daerah[t].first_day_infected);
-                        System.Console.WriteLine("day pertama {0} terinfeksi = {1}", list_daerah[t].nama, list_daerah[t].first_day_infected);
-                        foreach (KeyValuePair<string, float> kvp in list_daerah[t].daerah_tetangga)
-                        {
-                            sumber.Enqueue(list_daerah[t].nama);
-                            tujuan.Enqueue(kvp.Key);
-                            peluang_travel.Enqueue(kvp.Value);
-                        }
+                        first_daerah = daerah;
                     }
                 }
+
+                first = first_daerah.nama;
+                int i = find_index(list_daerah, first);
+                list_daerah[i].setFirstDayInfected(0);
+                list_daerah[i].setTotalHari(jumlahHari - list_daerah[i].first_day_infected);
+
+                foreach (KeyValuePair<string, float> kvp in list_daerah[i].daerah_tetangga)
+                {
+                    sumber.Enqueue(list_daerah[i].nama);
+                    tujuan.Enqueue(kvp.Key);
+                    peluang_travel.Enqueue(kvp.Value);
+                }
+
+                // LOOPING
+                while (tujuan.Count() > 0)
+                {
+                    line = "";
+                    string c_sumber = sumber.Dequeue();
+                    string c_tujuan = tujuan.Dequeue();
+                    float c_peluang_travel = peluang_travel.Dequeue();
+
+                    int s = find_index(list_daerah, c_sumber);
+                    int t = find_index(list_daerah, c_tujuan);
+
+                    // MENGECEK APAKAH BERHASIL TERINFEKSI/TIDAK
+                    if (list_daerah[s].berhasil_terinfeksi(c_peluang_travel) == true)
+                    {
+                        list_daerah[t].setIsInfected(true);
+                        list_daerah[t].setInfectedFrom(list_daerah[s].nama);
+                        double p = list_daerah[s].populasi;
+                        double tr = c_peluang_travel;
+                        double day = -4 * (1 / Math.Log(Math.E, (p * tr - 1) / (p - 1))) + 1;
+
+                        int first_day_new = (int)day + list_daerah[s].first_day_infected;
+                        System.Console.WriteLine("first_day_new {0}", first_day_new);
+                        System.Console.WriteLine("first_day_old {0}", list_daerah[t].first_day_infected);
+
+                        // ANAK DARI NODE AKAN DIMASUKKAN KE QUEUE APABILA FIRST DAY INFECTED LEBIH KECIL DARI YANG LAMA
+                        if (first_day_new < list_daerah[t].first_day_infected)
+                        {
+                            list_daerah[t].setFirstDayInfected(first_day_new);
+                            list_daerah[t].setTotalHari(jumlahHari - list_daerah[t].first_day_infected);
+                            System.Console.WriteLine("day pertama {0} terinfeksi = {1}", list_daerah[t].nama, list_daerah[t].first_day_infected);
+                            foreach (KeyValuePair<string, float> kvp in list_daerah[t].daerah_tetangga)
+                            {
+                                sumber.Enqueue(list_daerah[t].nama);
+                                tujuan.Enqueue(kvp.Key);
+                                peluang_travel.Enqueue(kvp.Value);
+                            }
+                        }
+                    }
+                    line += list_daerah[t].nama + ",";
+                    if (list_daerah[t].is_infected)
+                    {
+                        line += "Berhasil" + ",";
+                    }
+                    else
+                    {
+                        line += "Tidak Berhasil" + ",";
+                    }
+                    line += list_daerah[t].infected_from + ",";
+                    line += list_daerah[t].populasi_terinfeksi + ",";
+                    if (list_daerah[t].is_infected)
+                    {
+                        line += list_daerah[t].first_day_infected + "";
+                    }
+                    else
+                    {
+                        line += "-";
+                    }
+                    file.WriteLine(line);
+                }
             }
-
-
             return list_daerah;
         }
         public static int find_index(List<Daerah> list_daerah, string a)
