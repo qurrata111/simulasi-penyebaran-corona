@@ -21,7 +21,7 @@ namespace SimulasiCovid19
         {
             Form2 f2 = new Form2(this);
             f2.Form2_Load(this);
-            //f2.ShowDialog();
+            f2.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
