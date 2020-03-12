@@ -84,9 +84,6 @@ namespace SimulasiCovid19
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Controls.Add(viewer);
             this.ResumeLayout();
-            //show the form 
-            this.ShowDialog();
-
         }
 
         private void Form2_Load(object sender, EventArgs e)
