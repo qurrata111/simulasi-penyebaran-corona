@@ -1,0 +1,11 @@
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.deps.json
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.runtimeconfig.json
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.runtimeconfig.dev.json
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.dll
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/bin/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.pdb
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/obj/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.csprojAssemblyReference.cache
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/obj/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.AssemblyInfoInputs.cache
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/obj/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.AssemblyInfo.cs
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/obj/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.dll
+/media/qurrata111/Data/QA/kuliah/sems 4/stima/stima/tubes-2/simulasi-penyebaran-corona/obj/Debug/netcoreapp3.1/simulasi-penyebaran-covid-19.pdb

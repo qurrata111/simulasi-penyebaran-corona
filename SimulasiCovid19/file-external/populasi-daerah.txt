@@ -1,5 +1,6 @@
-4 A
-A 1000
-B 5000
-C 1000
-D 1000
+5 Wuhan
+Beijing 10000
+Hubei 2000
+Hunan 3000
+Macau 10000
+Wuhan 4000

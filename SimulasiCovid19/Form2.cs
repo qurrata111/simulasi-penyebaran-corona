@@ -19,6 +19,7 @@ namespace SimulasiCovid19
             //InitializeComponent(info.infected_daerah);
             InitializeComponent();
             this.f1 = form1;
+            this.Text = "Graf Daerah";
         }
 
         public void Form2_Load(Form1 form1)
@@ -29,7 +30,7 @@ namespace SimulasiCovid19
             int hari = Int32.Parse(str);
             Info info = new Info(hari, file_keterhubungan, file_populasi);
             info.writeBFSIntoCSV();
-            
+
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             //create a graph object
@@ -84,6 +85,7 @@ namespace SimulasiCovid19
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Controls.Add(viewer);
             this.ResumeLayout();
+
         }
 
         private void Form2_Load(object sender, EventArgs e)

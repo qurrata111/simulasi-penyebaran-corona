@@ -92,7 +92,7 @@ namespace SimulasiCovid19
         public void count_populasiTerinfeksi()
         {
             double total = (double)total_hari / (double)4;
-            populasi_terinfeksi = populasi / (int)(1 + ((populasi - 1) * Math.Pow(Math.E, -(total))));
+            populasi_terinfeksi = Convert.ToInt32(Math.Floor(populasi / (1 + ((populasi - 1) * Math.Pow(Math.E, -(total))))));
         }
 
         public Boolean berhasil_terinfeksi(double peluang)
@@ -341,7 +341,6 @@ namespace SimulasiCovid19
                         }
                     }
 
-                    
                     line += list_daerah[t].nama + ",";
                     if (list_daerah[s].berhasil_terinfeksi(c_peluang_travel) == true)
                     {

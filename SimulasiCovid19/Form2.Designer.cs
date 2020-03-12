@@ -38,7 +38,7 @@ namespace SimulasiCovid19
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(519, 330);
+            this.ClientSize = new System.Drawing.Size(770, 464);
             this.Name = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);

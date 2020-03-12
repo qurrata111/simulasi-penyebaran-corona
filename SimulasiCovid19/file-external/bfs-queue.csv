@@ -1,7 +1,6 @@
 Nama Daerah,Berhasil Terinfeksi,Daerah Asal Infeksi,Populasi Terinfeksi,Hari Pertama Terinfeksi
-B,Berhasil,A,2,7
-C,Tidak Berhasil,A,0,-
-A,Berhasil,B,1,0
-D,Berhasil,B,1,9
-A,Tidak Berhasil,D,0,-
-C,Tidak Berhasil,D,0,-
+Beijing,Berhasil,Wuhan,8,2
+Hubei,Tidak Berhasil,Wuhan,0,-
+Macau,Berhasil,Wuhan,4,4
+Wuhan,Tidak Berhasil,Beijing,0,-
+Beijing,Tidak Berhasil,Macau,0,-

@@ -15,6 +15,7 @@ namespace SimulasiCovid19
         public Form1()
         {
             InitializeComponent();
+            this.Text = "Simulasi Penyebaran Covid-19";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,6 +33,7 @@ namespace SimulasiCovid19
         {
             Form3 f3 = new Form3(this);
             f3.Form3_Load(this);
+            f3.ResumeLayout();
             f3.ShowDialog();
         }
 
@@ -39,6 +41,7 @@ namespace SimulasiCovid19
         {
             Form3 f3 = new Form3(this);
             f3.Form3_Load1(this);
+            f3.ResumeLayout();
             f3.ShowDialog();
         }
 

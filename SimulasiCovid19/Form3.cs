@@ -18,6 +18,7 @@ namespace SimulasiCovid19
         {
             InitializeComponent();
             this.f1 = form1;
+            this.Text = "Informasi Daerah";
         }
 
         public void Form3_Load(Form1 form1)
@@ -38,6 +39,7 @@ namespace SimulasiCovid19
                 d.Rows.Add(td[0],td[1],td[2],td[3],td[4]);
             }
             dataGridView1.DataSource = d;
+    
         }
 
         public void Form3_Load1(Form1 form1)

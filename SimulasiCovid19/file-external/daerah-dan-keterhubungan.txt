@@ -1,9 +1,8 @@
-8
-A B 0.2
-A C 0.05
-B A 0.5
-B D 0.75
-C A 0.1
-C B 0.1
-D A 0.5
-D C 0.1
+7
+Wuhan Beijing 0.7
+Wuhan Hubei 0.05
+Wuhan Macau 0.4
+Hubei Hunan 0.3
+Hunan Macau 0.6
+Macau Beijing 0.05
+Beijing Wuhan 0.1
