@@ -1,5 +1,0 @@
-nama,populasi,is_infected,infected_from,populasi_terinfeksi,first_day_infected
-A,1000,True,,9,0
-B,5000,True,A,1,7
-C,1000,False,,0,100000000
-D,1000,False,,0,100000000

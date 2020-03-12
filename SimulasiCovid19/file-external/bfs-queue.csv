@@ -1,0 +1,7 @@
+Nama Daerah,Berhasil Terinfeksi,Daerah Asal Infeksi,Populasi Terinfeksi,Hari Pertama Terinfeksi
+B,Berhasil,A,2,7
+C,Tidak Berhasil,A,0,-
+A,Berhasil,B,1,0
+D,Berhasil,B,1,9
+A,Tidak Berhasil,D,0,-
+C,Tidak Berhasil,D,0,-
