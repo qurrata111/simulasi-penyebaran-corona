@@ -28,7 +28,7 @@ namespace SimulasiCovid19
             string str = f1.inputBox.Text;
             int hari = Int32.Parse(str);
             Info info = new Info(hari, file_keterhubungan, file_populasi);
-            //info.writeBFSIntoCSV();
+            info.writeBFSIntoCSV();
             System.Windows.Forms.Form form = new System.Windows.Forms.Form();
             form.Size = new System.Drawing.Size(800, 450);
             form.Text = "Graf";
