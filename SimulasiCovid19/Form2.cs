@@ -29,10 +29,7 @@ namespace SimulasiCovid19
             int hari = Int32.Parse(str);
             Info info = new Info(hari, file_keterhubungan, file_populasi);
             info.writeBFSIntoCSV();
-            System.Windows.Forms.Form form = new System.Windows.Forms.Form();
-            form.Size = new System.Drawing.Size(800, 450);
-            form.Text = "Graf";
-
+            
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             //create a graph object
@@ -83,12 +80,12 @@ namespace SimulasiCovid19
             }
             viewer.Graph = graph;
             //associate the viewer with the form 
-            form.SuspendLayout();
+            this.SuspendLayout();
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            form.Controls.Add(viewer);
-            form.ResumeLayout();
+            this.Controls.Add(viewer);
+            this.ResumeLayout();
             //show the form 
-            form.ShowDialog();
+            this.ShowDialog();
 
         }
 
